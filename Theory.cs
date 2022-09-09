@@ -51,7 +51,7 @@ namespace _1st_Lab
             #region For
             // If you know how much times the program should be repeated use "for"
             counter = 100;
-            for (int i = 0; i < counter.ToString().Length; i += (2 * 1)) // condition can be number or function or empty, step can be any that type allow you
+            for (int i = 0; i < counter.ToString().Length; i += (2 * 1)) // the condition can be a number, a function, or omitted, the step can be anything that the selected variable type allows
             {
                 age += i / 100.0; // if you want cast int to double, type number with .0 addition
                 counter -= i;
@@ -62,11 +62,11 @@ namespace _1st_Lab
 
             #region Foreach
 
-            // when we have collections and operations don't include index, we can run over all collection with cycle "foreach"
+            // When we have collections and operations don't include index, we can run over all collection with cycle "foreach"
 
             // to get string from any variable we can with method nameof
             // to get type specification from any type we can with method typeof
-            // often it is better than use general strings that means name or type of the variable
+            // often it is better than use general strings that contain name or type of the variable
             counter = 0;
             string variableName = nameof(counter);
             foreach (char letter in variableName)
@@ -86,9 +86,9 @@ namespace _1st_Lab
             // so if calculation in the cycle don't make affect on condition, make it before start the cycle!
             counter = 0;
             var lengthOfWord = counter.ToString().Length;
-            for (int i = 0; i < lengthOfWord; i += (2 * 2)) // condition can be number or function or empty, step can be any that type allow you
+            for (int i = 0; i < lengthOfWord; i += (2 * 2))
             {
-                age += i / 100.0; // if you want cast int to double, type number with .0 addition
+                age += i / 100.0;
                 counter++;
             }
             Console.WriteLine($"Read first advice above how to get counter = {counter}");
@@ -120,20 +120,20 @@ namespace _1st_Lab
             #endregion
 
             #region Third advice: make pause by cycle
-            // pause or wasted cycle)
+            // Pause or empty cycle)
             int correctNumber = 0;
             while (Int32.TryParse(Console.ReadLine(), out correctNumber) == false)
             {
                 ;
             }
-            // this is very good defense from fools, but be aware that it can hang your program up and fool would be you :(
+            // This is very good defense from fools, but be aware that it can hang your program up and fool would be you :(
 
             Console.WriteLine($"Read third advice above how to get correct number = {correctNumber}");
 
             #endregion
 
             #region Fourth advice: miss some calculations
-            // mostly it is using in for or foreach cycles. You can jump to the next loop if some condition execude
+            // You can jump to the next loop if some condition execude
 
             counter = 0;
             foreach (char letter in "Abracadabra")
@@ -150,7 +150,7 @@ namespace _1st_Lab
 
             #region Fifth advice: be careful with nested cycles
             /* When we use break or continue in the nested cycle, it have an affect only in the nested cycle
-             * Sometimes it should have an affect on the external cycle
+             * Sometimes we want to affect the outer cycle
              * In that case use boolean flag
              */
             counter = 100;
@@ -170,7 +170,7 @@ namespace _1st_Lab
                 }
                 if (death)
                 {
-                    break;  // system add you a prompt what cycle will be effected
+                    break;  // the system will give you a hint about which cycle will be broken
                 }
             }
 
@@ -188,7 +188,7 @@ namespace _1st_Lab
             age = age + 15; // instead age = 10 + 15;
 
             /* Often it can be used in cycles and big formulas
-             * because cycle have time difficult as O(n). If we will do calculation for each member it would be as O(n1) + O(n2) + ...
+             * because cycle have time complexity as O(n) or more (for different algorithms). If we will do calculation for each member in separate cycle it would be as O(n1) + O(n2) + ...
              * or worse if we use nested cycles: O(n^2) and more
              */
             // For example: find sum of function: n*x + Sqrt(n)^x + x^ln(n)
@@ -230,7 +230,7 @@ namespace _1st_Lab
             sum = firstMember + secondMember + thirdMember;
             // Time complexity of this algorithm is 3 * O(n)
 
-            // Time complexity of this algorithm yet O(n). Do you understand why?
+            // Time complexity of this algorithm O(n). Do you understand why?
             for (int i = 0; i < n; i++)
             {
                 firstMember += i * x;
@@ -242,7 +242,7 @@ namespace _1st_Lab
             // It is very important for nested cycles
             // Look at 1.12 example in the book 2100
             // If we would use straight (monkey) coding it would be awful as for us so for computer
-            // Newer do so!!!! 3 level of cycle very bad practice!
+            // Never do so!!!! 3 level of nesting for cycles is very bad practice!
             double previousSum;
             double e;
             int memberNumber = 0, factorial = 0;
@@ -255,7 +255,7 @@ namespace _1st_Lab
                 {
                     previousSum = sum;
                     factorial = 1;
-                    for (int j = 1; j <= memberNumber; j++) // Such factorial calculation very difficult for PC and number can be very big (more than 2^32)
+                    for (int j = 1; j <= memberNumber; j++) // such factorial calculation can provide very big number (more than 2^32) and we get exception or error
                     {
                         factorial *= (2 * j);
                     }
@@ -280,14 +280,14 @@ namespace _1st_Lab
                 double j = 1;
                 do
                 {
-                    c = -c * i * i / ((2 * j - 1) * (2 * j)); // Value of new number
-                    a = c * (2 * j - 1); // Multiplied on coefficient
+                    c = -c * i * i / ((2 * j - 1) * (2 * j)); // value of new number
+                    a = c * (2 * j - 1); // exclude odd coefficient 
                     sum += a;
                     j++;
                 } while (Math.Abs(a) >= 0.0001);
                 Console.WriteLine($"Прирост суммы {sum:f4} стал очень мал при {j} для x = {i}");
             }
-            // We have less nested cycles and program works faster (for large n) but a little bit less correct on the rounding
+            // We have less nested cycles and program works faster (for large n) but a little bit less correct due to rounding
 
             #endregion
         }
