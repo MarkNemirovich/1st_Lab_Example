@@ -6,25 +6,19 @@ namespace _1st_Lab
     {
         static void Main(string[] args)
         {
-            #region Task 2
-            double s = 1;
-            for (int i = 2; i <= 10; i++)
-                s += s/i;
-            Console.WriteLine($"Task 2: {s}");
-            #endregion
+            #region First level
+            Console.WriteLine("------ First level ----------------------\n");
 
             #region Task 4
-            string errorMessageWrongDataEndtered = "Entered data is wrong";
+            double x = 0;
+            double s = 0;
 
-            int x = 0;
-            s = 0;
-
-            Console.Write("\nFor task 4 please enter x (x != 0): ");
-            if (int.TryParse(Console.ReadLine(), out x))
+            Console.Write("For task 4 please enter x (x != 0): ");
+            if (double.TryParse(Console.ReadLine(), out x))
             {
                 if (x == 0)
                 {
-                    Console.WriteLine(errorMessageWrongDataEndtered);
+                    Console.WriteLine("Entered data is wrong");
                     return;
                 }
 
@@ -41,35 +35,14 @@ namespace _1st_Lab
             }
             else
             {
-                Console.WriteLine(errorMessageWrongDataEndtered);
+                Console.WriteLine("Entered data is wrong");
+                return;
             }
-            #endregion
-
-            #region Task 7
-            int fact = 1;
-
-            for (int i = 2; i <= 6; i++)
-                fact *= i;
-
-            Console.WriteLine($"Task 7: {fact}");
-            #endregion
-
-            #region Task 8
-            fact = 1;
-            s = fact;
-
-            for (int i = 2; i <= 6; i++)
-            {
-                fact *= i;
-                s += fact;
-            }
-
-            Console.WriteLine($"Task 8: {s}");
             #endregion
 
             #region Task 9
             s = 0;
-            fact = 1;
+            int fact = 1;
             int power = 5;
             int sign = -1;
 
@@ -120,7 +93,7 @@ namespace _1st_Lab
             for (int i = 2; i <= 64; i++)
                 s += s * 2;
 
-            Console.WriteLine($"Task 16: {s/15} grams");
+            Console.WriteLine($"Task 16: {s / 15} grams");
             #endregion
 
             #region Task 18
@@ -134,17 +107,155 @@ namespace _1st_Lab
                 Console.WriteLine($"{i} hours = {s} cells");
             }
             #endregion
+            #endregion
 
-            #region Task 13
-            Console.WriteLine("\nTask 13:");
-            decimal xf = -1.5m; // xf - stands for x of function
+            #region Second level
+            Console.WriteLine("\n------ Second level ----------------------\n");
 
-            for (; xf <= -1; xf += 0.1m)
-                Console.WriteLine($"x = {xf} \t y = {1}");
-            for (; xf <= 1; xf += 0.1m)
-                Console.WriteLine($"x = {xf} \t y = {-xf}");
-            for (; xf <= 1.5m; xf += 0.1m)
-                Console.WriteLine($"x = {xf} \t y = {-1}");
+            #region Task 2
+            int p = 1;
+            int n = 1;
+
+            while (p < 30000)
+            {
+                n += 3;
+                p *= n;
+            }
+
+            n -= 3;
+
+            Console.WriteLine($"Task 2: n = {n}");
+            #endregion
+
+            #region Task 4
+            s = 1;
+            x = 0;
+
+            Console.Write("\nFor task 4 please enter x (|x| < 1): ");
+            if (double.TryParse(Console.ReadLine(), out x))
+            {
+                if (x >= 1 || x <= -1)
+                {
+                    Console.WriteLine("Entered data is wrong");
+                    return;
+                }
+                else
+                {
+                    double xdPower2 = x * x;
+                    x = xdPower2;
+
+                    while (x >= 0.0001)
+                    {
+                        s += x;
+                        x *= xdPower2;
+                    }
+
+                    Console.WriteLine($"Task 4: {Math.Round(s, 6)}\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Entered data is wrong");
+                return;
+            }
+            #endregion
+
+            #region Task 7, 8
+            double dailyDistance = 10;
+            int days = 1;
+            int daysWhenGreater = 0;
+            double wholeDistance = 0;
+
+            Console.WriteLine("Task 7, 8: ");
+
+            for (; days <= 7; days++)
+            {
+                dailyDistance += dailyDistance * 0.1;
+                wholeDistance += dailyDistance;
+
+                if (wholeDistance >= 100)
+                    daysWhenGreater = days;
+            }
+
+            Console.WriteLine($"a) After 7 days whole distance will be {Math.Round(wholeDistance, 2)} km");
+            Console.WriteLine($"b) Whole distance will be 100 km or greater after {daysWhenGreater} days");
+
+            for (; dailyDistance <= 20; days++)
+            {
+                dailyDistance += dailyDistance * 0.1;
+                wholeDistance += dailyDistance;
+            }
+
+            Console.WriteLine($"c) Daily distance will be greater than 20 km after {days} days");
+            #endregion
+
+            #endregion
+
+            #region Third level
+            Console.WriteLine("\n------ Third level ----------------------\n");
+
+            #region Task 1
+            Console.WriteLine("Task 1:");
+            double xfPower2;
+            double xfPowerSum;
+            double term;
+            double y;
+
+            for (decimal xf = 0.1m; xf <= 1; xf += 0.1m)
+            {
+                s = 0;
+                sign = -1;
+                fact = 1;
+
+                xfPower2 = (double)(xf * xf);
+                xfPowerSum = xfPower2;
+
+                // Zero term calculation
+                term = xfPower2;
+                s += term;
+
+                for (int i = 1; term >= 0.0001; i++)
+                {
+                    sign = -sign;
+                    fact *= i;
+
+                    term = xfPowerSum / fact;
+                    s += term * sign;
+
+                    xfPowerSum *= xfPower2;
+                }
+
+                y = Math.Cos((double)xf);
+
+                Console.WriteLine($"x = {xf} \t y = {Math.Round(y, 3)} \t   s = {Math.Round(s, 3)}");
+            }
+            #endregion
+
+            #region Task 3
+            Console.WriteLine("\nTask 3:");
+
+            for (decimal xf = 0.1m; xf <= 1; xf += 0.1m)
+            {
+                s = 0;
+                fact = 1;
+
+                term = 1;
+
+                for (int i = 1; term >= 0.0001; i++)
+                {
+                    fact *= i;
+                    term = Math.Cos((double)(i * xf)) / fact;
+
+                    s += term;
+                }
+
+                s += 1;
+                y = Math.Exp(Math.Cos((double)xf)) * Math.Cos(Math.Sin((double)xf));
+
+                Console.WriteLine($"x = {xf} \t y = {Math.Round(y, 3)} \t   s = {Math.Round(s, 3)}");
+            }
+            #endregion
+
             #endregion
         }
     }
