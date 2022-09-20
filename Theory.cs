@@ -141,7 +141,7 @@ namespace lab1s
             #region task 3_1
             for (x = 0.1; x <= 1; x+=0.1)
             {
-                sum = 0;
+                sum = 1;
                 int ii = 1;
                 if (ii == 0)
                 {
